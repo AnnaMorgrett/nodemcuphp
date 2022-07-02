@@ -1,10 +1,10 @@
 <?php
 
 //include library utama
-include_once 'coders.php';
+include_once 'config.php';
 
 // Buat Instance baru
-$app = new CodersIndonesia_Nodemcu();
+$app = new Config_Nodemcu();
 
 // Baca query dari alamat
 $app->query_string = $_SERVER['QUERY_STRING'];
@@ -19,15 +19,26 @@ if ($app->is_url_query('mode')) {
             $app->read_data();
         
         case 'save':
-            if ($app->is_url_query('temperature') && $app->is_url_query('humidity'))
+            if ($app->is_url_query('vph') && $app->is_url_query('vtemps') && $app->is_url_query('vtempd') && $app->is_url_query('vtempt') && $app->is_url_query('vfd') && $app->is_url_query('vwd') && $app->is_url_query('vwf'))
             {
-                $temp = $app->get_url_query_value('temperature');
-                $humid = $app->get_url_query_value('humidity');
-                $app->create_data($temp, $humid);
+                $sph = $app->get_url_query_value('vph');
+                $stemps = $app->get_url_query_value('vtemps');
+                $stempd = $app->get_url_query_value('vtempd');
+                $stempt = $app->get_url_query_value('vtempt');
+                $sfd = $app->get_url_query_value('vfd');
+                $swd = $app->get_url_query_value('vwd');
+                $swf = $app->get_url_query_value('vwf');
+
+                $app->create_data($sph, $stemps, $stempd, $stempt, $sfd, $swd, $swf);
             } else {
                 $error = [
-                    'temperature'=>'required',
-                    'humidity'=> 'required',
+                    'vph'=>'required',
+                    'vtemps'=> 'required',
+                    'vtempd'=>'required',
+                    'vtempt'=> 'required',
+                    'vfd'=>'required',
+                    'vwd'=> 'required',
+                    'vwf'=>'required',
                 ];
                 echo $app->error_handler($error);
             }
@@ -51,22 +62,57 @@ if ($app->is_url_query('mode')) {
             {
                 $id = $app->get_url_query_value('id');
                 
-                if ($app->is_url_query('temperature'))
+                if ($app->is_url_query('vph'))
                 {
-                    $temp = $app->get_url_query_value('temperature');
-                    $app->update_data($id, $temp);
+                    $sph = $app->get_url_query_value('vph');
+                    $app->update_data($id, $sph);
                 }
 
-                if($app->is_url_query('humidity'))
+                if($app->is_url_query('vtemps'))
                 {
-                    $humid = $app->get_url_query_value('humidity');
-                    $app->update_data($id, $humid);
+                    $stemps = $app->get_url_query_value('vtemps');
+                    $app->update_data($id, $stemps);
+                }
+                
+                if($app->is_url_query('vtempd'))
+                {
+                    $stempd = $app->get_url_query_value('vtempd');
+                    $app->update_data($id, $stempd);
+                }
+                
+                if($app->is_url_query('vtempt'))
+                {
+                    $stempt = $app->get_url_query_value('vtempt');
+                    $app->update_data($id, $stempt);
+                }
+                
+                if($app->is_url_query('vfd'))
+                {
+                    $svd = $app->get_url_query_value('vfd');
+                    $app->update_data($id, $svd);
+                }
+                
+                if($app->is_url_query('vwd'))
+                {
+                    $swd = $app->get_url_query_value('vwd');
+                    $app->update_data($id, $swd);
+                }
+                
+                if($app->is_url_query('vwf'))
+                {
+                    $swf = $app->get_url_query_value('vwf');
+                    $app->update_data($id, $swf);
                 }
             } else {
                 $error = [
                     'id'=>'required',
-                    'temperature'=>'OR required',
-                    'humidity'=>'OR required',
+                    'vph'=>'OR required',
+                    'vtemps'=>'OR required',
+                    'vtempd'=>'OR required',
+                    'vtempt'=>'OR required',
+                    'vfd'=>'OR required',
+                    'vwd'=>'OR required',
+                    'vwf'=>'OR required',
                 ];
                 echo $app->error_handler($error);
             }

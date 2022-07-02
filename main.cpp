@@ -48,14 +48,14 @@ void loop(){
   }
 
   // DHT get temp dan humid
-  float temp = dht.readTemperature(false);
-  float humid = dht.readHumidity();
+  float temp = dht.readvph(false);
+  float humid = dht.readvtemps();
 
-  // nodemcuphp/index.php?mode=save&temperature=${temp}&humidity=${humid}
+  // nodemcuphp/index.php?mode=save&vph=${temp}&vtemps=${humid}
   String apiUrl = "/nodemcuphp/index.php?";
   apiUrl += "mode=save";
-  apiUrl += "&temperature="+String(temp);
-  apiUrl += "&humidity="+String(humid);
+  apiUrl += "&vph="+String(temp);
+  apiUrl += "&vtemps="+String(humid);
 
   // Set header Request
   client.print(String("GET ") + apiUrl + " HTTP/1.1\r\n" +

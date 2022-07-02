@@ -14,7 +14,7 @@
  *  menghargai hasil orang lain. Silakan copas, bantu dengan mencantumkan
  *  saja source codenya. Subscribe channel youtube lebih baik
  */
-class CodersIndonesia_Nodemcu
+class Config_Nodemcu
 {
 
     private $connection;
@@ -34,13 +34,13 @@ class CodersIndonesia_Nodemcu
      */
     function read_data()
     {
-        $sql_query = "SELECT * FROM tables ORDER BY timestamp DESC";
+        $sql_query = "SELECT * FROM tables ORDER BY created_at DESC";
         echo $this->execute_query($sql_query, [], true);
     }
 
-    function create_data($temp, $humid)
+    function create_data($sph, $stemps, $stempd, $stempt, $sfd, $swd, $swf)
     {
-        $sql_query = "INSERT INTO tables (data_temperature, data_humidity) VALUES ('".$temp."','".$humid."')";
+        $sql_query = "INSERT INTO tables (ph_1, temp_1, temp_2, temp_3, feeder_distance, water_distance, water_flow) VALUES ('".$sph."','".$stemps."','".$stempd."','".$stempt."','".$sfd."','".$swd."','".$swf."')";
         echo $this->execute_query($sql_query);
     }
 
