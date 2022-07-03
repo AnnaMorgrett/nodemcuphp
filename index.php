@@ -1,5 +1,7 @@
 <?php
 
+// http://localhost/nodemcuphp/index.php?mode=save&vph=20&vtemps=20&vtempd=20&vtempt=20&vfd=20&vwd=20&vwf=20
+
 //include library utama
 include_once 'config.php';
 

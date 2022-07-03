@@ -1,17 +1,11 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
-#include "DHT.h"
 
 // Network ID
 const char* ssid     = "HUAWEI-140F";
 const char* password = "65E4TMNMDRY";
 const char* host = "192.168.8.102";
 const int port = 80;
-
-// Deklarasi DHT
-#define DHTPIN D1
-#define DHTTYPE DHT11
-DHT dht(DHTPIN, DHTTYPE);
 
 // Current time
 unsigned long currentTime = millis();
@@ -48,14 +42,24 @@ void loop(){
   }
 
   // DHT get temp dan humid
-  float temp = dht.readvph(false);
-  float humid = dht.readvtemps();
+  float sph = random(6, 8);
+  float stemps = random(26, 29);
+  float stempd = random(26, 29);
+  float stempt = random(26, 29);
+  float sfd = random(50, 55);
+  float swd = random(60, 75);
+  float swf = random(60, 90);
 
-  // nodemcuphp/index.php?mode=save&vph=${temp}&vtemps=${humid}
+  // /nodemcuphp/index.php?mode=save&vph=20&vtemps=20&vtempd=20&vtempt=20&vfd=20&vwd=20&vwf=20
   String apiUrl = "/nodemcuphp/index.php?";
   apiUrl += "mode=save";
-  apiUrl += "&vph="+String(temp);
-  apiUrl += "&vtemps="+String(humid);
+  apiUrl += "&vph="+String(sph);
+  apiUrl += "&vtemps="+String(stemps);
+  apiUrl += "&vtempd="+String(stempd);
+  apiUrl += "&vtempt="+String(stempt);
+  apiUrl += "&vfd="+String(sfd);
+  apiUrl += "&vwd="+String(swd);
+  apiUrl += "&vwf="+String(swf);
 
   // Set header Request
   client.print(String("GET ") + apiUrl + " HTTP/1.1\r\n" +
