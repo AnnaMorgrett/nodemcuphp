@@ -1,19 +1,4 @@
 <?php
-
-/**
- *  Coders Indonesia - Belajar Arduino dan IoT mudah dan asyik
- * -------------------------------------------------------------
- *  Author : Coders Indonesia
- *  Instagram : @coders.id
- *  Youtube : coders indonesia
- *  License : Pribadi
- * -------------------------------------------------------------
- * 
- *  Harap cantumkan sumber jika mau menggunakan kode ini. Dengan
- *  begitu, temen-temen sudah belajar jadi orang baik. Minimal
- *  menghargai hasil orang lain. Silakan copas, bantu dengan mencantumkan
- *  saja source codenya. Subscribe channel youtube lebih baik
- */
 class Config_Nodemcu
 {
 
@@ -28,7 +13,7 @@ class Config_Nodemcu
 
 
     /**
-     * Coders Class CRUD Section
+     * Class CRUD Section
      * This section for CRUD Operation
      * Create - Read - Update - Delete
      */
@@ -38,9 +23,9 @@ class Config_Nodemcu
         echo $this->execute_query($sql_query, [], true);
     }
 
-    function create_data($sph, $stemps, $stempd, $stempt, $sfd, $swd, $swf)
+    function create_data($sph, $stemps, $stempd, $stempt, $sfd, $swd, $swf, $dt)
     {
-        $sql_query = "INSERT INTO tables (ph_1, temp_1, temp_2, temp_3, feeder_distance, water_distance, water_flow) VALUES ('".$sph."','".$stemps."','".$stempd."','".$stempt."','".$sfd."','".$swd."','".$swf."')";
+        $sql_query = "INSERT INTO tables (ph_1, temp_1, temp_2, temp_3, feeder_distance, water_distance, water_flow, created_at) VALUES ('".$sph."','".$stemps."','".$stempd."','".$stempt."','".$sfd."','".$swd."','".$swf."','".$dt."')";
         echo $this->execute_query($sql_query);
     }
 
@@ -57,7 +42,7 @@ class Config_Nodemcu
     }
 
     /**
-     * Coders Class Connection Section
+     * Class Connection Section
      * This section for RDBMS Operation Only
      * 
      */
@@ -91,7 +76,7 @@ class Config_Nodemcu
     }
 
     /**
-     * Coders Class Connection Section
+     * Class Connection Section
      * This section for RDBMS Operation Only
      * 
      */

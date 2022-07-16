@@ -2,9 +2,9 @@
 #include <ESP8266WiFi.h>
 
 // Network ID
-const char* ssid     = "HUAWEI-140F";
-const char* password = "65E4TMNMDRY";
-const char* host = "192.168.8.102";
+const char* ssid     = "Redmi Note 7_9813";
+const char* password = "00001111";
+const char* host = "192.168.43.27";
 const int port = 80;
 
 // Current time
